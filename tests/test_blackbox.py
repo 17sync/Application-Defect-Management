@@ -93,6 +93,15 @@ def test_waitlist_adds_once_and_preserves_enrollment_state():
     assert (s.current_credits, s.registered_courses, c.enrolled) == before
 
 
+def test_duplicate_registration_does_not_mutate_state():
+    s = student(current_credits=3, registered_courses={"CS201"},
+                completed_courses={"CS101", "MATH101"})
+    c = course(capacity=3, enrolled=1, prerequisites={"CS101", "MATH101"})
+    before = (s.current_credits, set(s.registered_courses), c.enrolled, list(c.waitlist))
+    assert register_course(s, c) == "ALREADY_REGISTERED"  # STATE-FAIL-DUPLICATE
+    assert (s.current_credits, s.registered_courses, c.enrolled, c.waitlist) == before
+
+
 @pytest.mark.parametrize("dues,registered,completed,credits,expected,test_id", [
     (1, set(), {"CS101"}, 0, "DUES_BLOCK", "STATE-FAIL-DUES"),
     (0, set(), set(), 0, "PREREQUISITES_MISSING", "STATE-FAIL-PREREQ"),
