@@ -6,6 +6,17 @@ This is the **system under test** for black-box and white-box testing, not a ref
 - `registration.py`: Python application to test.
 - `REQUIREMENTS.md`: authoritative functional requirements, status strings, and sample scenarios.
 - `requirements.txt`: dependencies for test development.
+- `tests/test_blackbox.py`: requirements-based ECP, BVA, decision-table, and state tests.
+- `tests/test_whitebox.py`: structural branch and path tests (added on `white-box`).
+- `docs/`: test design workbooks, CFG, coverage analysis, and final report.
+- `.github/workflows/tests.yml`: runs pytest with statement and branch coverage on pushes and pull requests.
+
+## Assignment branches
+- `black-box`: initial black-box design and preserved defect failures.
+- `white-box`: CFG, coverage, MC/DC analysis, and structural tests.
+- `fixes`: requirement-conforming defect repairs and passing regression suite.
+
+See `docs/testing_report.pdf` for analysis, defect records, coverage results, and submission notes. GitHub issues and pull request links are recorded there when available.
 
 ## Getting started
 ```bash
