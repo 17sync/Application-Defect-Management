@@ -1,0 +1,16 @@
+Baseline execution evidence - starter implementation, before registration.py fixes
+Command: python -m pytest tests/test_blackbox.py -q --cov=registration --cov-branch --cov-report=term-missing
+Result: 11 failed, 24 passed (35 collected cases).
+Coverage: 55/57 statements (96.5%); 24/26 branches (92.3%); 2 partial branches; combined coverage.py total 95.18%.
+
+Requirement-based failures (pytest parameter IDs shown):
+- ECP-CR-VALID-MAX (14+4) and BVA-TOTAL-18 (15+3) and BVA-TOTAL-18-MIN-COURSE (17+1): exact 18-credit totals were rejected.
+- ECP-PR-SOME: partial prerequisite completion was accepted.
+- BVA-CAPACITY-FULL: eligible student at capacity returned REGISTERED.
+- BVA-DUES-1 and DT-PRIORITY-DUES: Rs. 1 was not blocked, and dues priority lost to duplicate registration.
+- STATE-REGISTER: the otherwise eligible 15+3 state change was blocked because exact 18 was rejected.
+- STATE-WAITLIST: full-course registration returned REGISTERED instead of WAITLISTED.
+- STATE-FAIL-DUES: unsuccessful registration with Rs. 1 proceeded as REGISTERED.
+- STATE-WITHDRAW: student credits and registration changed but course enrollment remained 1.
+
+All expectations derive from REQUIREMENTS.md FR-01, FR-03 through FR-09, FR-11 through FR-13. No expected value was changed to accommodate the starter behavior.
